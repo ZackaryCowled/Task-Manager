@@ -1,0 +1,13 @@
+c:\users\zack\desktop\Task Manager\Task Manager\bin\Debug\Task Manager.exe.config
+c:\users\zack\desktop\Task Manager\Task Manager\bin\Debug\Task Manager.exe
+c:\users\zack\desktop\Task Manager\Task Manager\bin\Debug\Task Manager.pdb
+c:\users\zack\desktop\Task Manager\Task Manager\obj\Debug\Task Manager.csprojResolveAssemblyReference.cache
+c:\users\zack\desktop\Task Manager\Task Manager\obj\Debug\Task_Manager.TaskManagerForm.resources
+c:\users\zack\desktop\Task Manager\Task Manager\obj\Debug\Task_Manager.Properties.Resources.resources
+c:\users\zack\desktop\Task Manager\Task Manager\obj\Debug\Task Manager.csproj.GenerateResource.Cache
+c:\users\zack\desktop\Task Manager\Task Manager\obj\Debug\Task Manager.exe
+c:\users\zack\desktop\Task Manager\Task Manager\obj\Debug\Task Manager.pdb
+c:\users\zack\desktop\Task Manager\Task Manager\obj\Debug\Task_Manager.TaskListControl.resources
+C:\Users\Zack\desktop\Task Manager\Task Manager\obj\Debug\Task_Manager.TaskControl.resources
+C:\Users\Zack\desktop\Task Manager\Task Manager\obj\Debug\Task_Manager.TaskItemControl.resources
+C:\Users\Zack\desktop\Task Manager\Task Manager\obj\Debug\Task_Manager.TaskItemPanelControl.resources
