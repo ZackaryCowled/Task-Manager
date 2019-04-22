@@ -69,6 +69,7 @@
             this.TaskList.Name = "TaskList";
             this.TaskList.Size = new System.Drawing.Size(294, 652);
             this.TaskList.TabIndex = 4;
+            this.TaskList.SelectedIndexChanged += new System.EventHandler(this.TaskList_SelectedIndexChanged);
             // 
             // TaskListControl
             // 
@@ -79,6 +80,7 @@
             this.Controls.Add(this.TaskList);
             this.Name = "TaskListControl";
             this.Size = new System.Drawing.Size(300, 700);
+            this.Load += new System.EventHandler(this.TaskListControl_Load);
             this.ResumeLayout(false);
 
         }

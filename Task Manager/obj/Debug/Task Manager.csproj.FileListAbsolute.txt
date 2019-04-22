@@ -11,3 +11,16 @@ c:\users\zack\desktop\Task Manager\Task Manager\obj\Debug\Task_Manager.TaskListC
 C:\Users\Zack\desktop\Task Manager\Task Manager\obj\Debug\Task_Manager.TaskControl.resources
 C:\Users\Zack\desktop\Task Manager\Task Manager\obj\Debug\Task_Manager.TaskItemControl.resources
 C:\Users\Zack\desktop\Task Manager\Task Manager\obj\Debug\Task_Manager.TaskItemPanelControl.resources
+C:\Users\Zack\Documents\Task-Manager\Task Manager\bin\Debug\Task Manager.exe.config
+C:\Users\Zack\Documents\Task-Manager\Task Manager\obj\Debug\Task Manager.exe
+C:\Users\Zack\Documents\Task-Manager\Task Manager\obj\Debug\Task Manager.pdb
+C:\Users\Zack\Documents\Task-Manager\Task Manager\bin\Debug\Task Manager.exe
+C:\Users\Zack\Documents\Task-Manager\Task Manager\bin\Debug\Task Manager.pdb
+C:\Users\Zack\Documents\Task-Manager\Task Manager\obj\Debug\Task Manager.csprojResolveAssemblyReference.cache
+C:\Users\Zack\Documents\Task-Manager\Task Manager\obj\Debug\Task_Manager.TaskControl.resources
+C:\Users\Zack\Documents\Task-Manager\Task Manager\obj\Debug\Task_Manager.TaskItemControl.resources
+C:\Users\Zack\Documents\Task-Manager\Task Manager\obj\Debug\Task_Manager.TaskItemPanelControl.resources
+C:\Users\Zack\Documents\Task-Manager\Task Manager\obj\Debug\Task_Manager.TaskListControl.resources
+C:\Users\Zack\Documents\Task-Manager\Task Manager\obj\Debug\Task_Manager.TaskManagerForm.resources
+C:\Users\Zack\Documents\Task-Manager\Task Manager\obj\Debug\Task_Manager.Properties.Resources.resources
+C:\Users\Zack\Documents\Task-Manager\Task Manager\obj\Debug\Task Manager.csproj.GenerateResource.Cache

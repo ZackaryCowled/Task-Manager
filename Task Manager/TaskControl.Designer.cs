@@ -53,6 +53,7 @@
             this.NameTextbox.Name = "NameTextbox";
             this.NameTextbox.Size = new System.Drawing.Size(490, 29);
             this.NameTextbox.TabIndex = 1;
+            this.NameTextbox.TextChanged += new System.EventHandler(this.NameTextbox_TextChanged);
             // 
             // CompleteCheckbox
             // 
@@ -64,6 +65,7 @@
             this.CompleteCheckbox.TabIndex = 3;
             this.CompleteCheckbox.Text = "Complete";
             this.CompleteCheckbox.UseVisualStyleBackColor = true;
+            this.CompleteCheckbox.CheckedChanged += new System.EventHandler(this.CompleteCheckbox_CheckedChanged);
             // 
             // DescriptionLabel
             // 
@@ -85,6 +87,7 @@
             this.DescriptionTextbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DescriptionTextbox.Size = new System.Drawing.Size(689, 116);
             this.DescriptionTextbox.TabIndex = 5;
+            this.DescriptionTextbox.TextChanged += new System.EventHandler(this.DescriptionTextbox_TextChanged);
             // 
             // AddTaskItemButton
             // 

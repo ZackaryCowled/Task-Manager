@@ -12,8 +12,8 @@ namespace Task_Manager
 {
     public partial class TaskManagerForm : Form
     {
-        TaskListControl taskListControl;
-        TaskControl taskControl;
+        public TaskListControl taskListControl;
+        public TaskControl taskControl;
 
         public TaskManagerForm()
         {
@@ -25,14 +25,6 @@ namespace Task_Manager
             //Create and configure custom controls
             InitializeTaskListControl();
             InitializeTaskControl();
-
-            //Example task items
-            TaskItemControl myTaskItem = new TaskItemControl();
-            taskControl.AddTaskItem(myTaskItem);
-            TaskItemControl myTaskItem2 = new TaskItemControl();
-            taskControl.AddTaskItem(myTaskItem2);
-            TaskItemControl myTaskItem3 = new TaskItemControl();
-            taskControl.AddTaskItem(myTaskItem3);
         }
 
         //Creates and configures the task list control
@@ -54,6 +46,24 @@ namespace Task_Manager
             taskControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
             taskControl.Visible = false;
             taskControl.Parent = this;
+        }
+
+        //Closes the application
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        //Creates a task
+        private void createToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            taskListControl.CreateTask();
+        }
+
+        //Removes the selected task
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            taskListControl.RemoveSelectedTask();
         }
     }
 }

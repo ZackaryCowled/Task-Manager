@@ -45,12 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Task.cs" />
     <Compile Include="TaskControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="TaskControl.Designer.cs">
       <DependentUpon>TaskControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="TaskItem.cs" />
     <Compile Include="TaskItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
