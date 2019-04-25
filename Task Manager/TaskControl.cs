@@ -26,9 +26,9 @@ namespace Task_Manager
             InitializeTaskItemPanelControl();
         }
 
-        //Creates and configure the task item panel
         private void InitializeTaskItemPanelControl()
         {
+            //Initialize the task item panel
             taskItemPanel = new TaskItemPanelControl();
             taskItemPanel.Location = new Point(0, DescriptionTextbox.Location.Y + DescriptionTextbox.Size.Height);
             taskItemPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
@@ -63,6 +63,18 @@ namespace Task_Manager
             {
                 //Remove task item controls from previously selected task
                 taskItemPanel.RemoveAllTaskItems();
+            }
+            else
+            {
+                //Initialize the task item panel
+                InitializeTaskItemPanelControl();
+            }
+
+            //For each task item in the selected task
+            for(int i = 0; i < selectedTask.Items.Count; i++)
+            {
+                //Create and configure task item
+                AddTaskItem(new TaskItemControl());
             }
         }
 

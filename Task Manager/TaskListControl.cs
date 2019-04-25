@@ -99,7 +99,7 @@ namespace Task_Manager
             //If at least one task exists
             if (TaskList.SelectedIndex >= 0)
             {
-                //Select the task using the task control
+                //Select the task to display with the task control
                 ((TaskManagerForm)Parent).taskControl.SelectTask(tasks[TaskList.SelectedIndex]);
             }
         }
@@ -152,6 +152,13 @@ namespace Task_Manager
             tasks.Clear();
             TaskList.Items.Clear();
 
+            //If no tasks exist in the project
+            if(project.Tasks.Count == 0)
+            {
+                //Exit out of the function
+                return;
+            }
+
             //Load tasks
             tasks = project.Tasks;
 
@@ -161,6 +168,9 @@ namespace Task_Manager
                 //Add task name to task list
                 TaskList.Items.Add(tasks[i].Name);
             }
+
+            //Select the first task
+            SelectFirstTask();
         }
     }
 }

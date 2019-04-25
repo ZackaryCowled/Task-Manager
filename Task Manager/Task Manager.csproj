@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Project.cs" />
-    <Compile Include="ProjectIO.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="TaskControl.cs">
       <SubType>UserControl</SubType>

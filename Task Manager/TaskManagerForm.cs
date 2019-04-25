@@ -73,6 +73,33 @@ namespace Task_Manager
             taskListControl.RemoveSelectedTask();
         }
 
+        //Opens a project of the users choosing
+        private void openProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Create and configure open file dialog
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Project File|*.xml";
+            openFileDialog.Title = "Open Project";
+
+            //Show open file dialog
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //Update the project filepath
+                ProjectFilepath = openFileDialog.FileName;
+            }
+
+            //If the project filepath is valid
+            if (!string.IsNullOrEmpty(ProjectFilepath) && File.Exists(ProjectFilepath))
+            {
+                //Open the project
+                project.Load(ProjectFilepath);
+
+                //Load project into task list control
+                taskListControl.LoadProject(project);
+                taskListControl.SelectFirstTask();
+            }
+        }
+
         //Saves the project
         private void saveProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -96,37 +123,38 @@ namespace Task_Manager
             if(!string.IsNullOrEmpty(ProjectFilepath))
             {
                 //Save the project
-                if (!ProjectIO.Save(ProjectFilepath, project))
+                if (!project.Save(ProjectFilepath))
                 {
-                    //TODO: Display error message
+                    //Display error message
+                    MessageBox.Show("Failed to save project");
                 }
             }
         }
 
-        //Opens a project of the users choosing
-        private void openProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        //Saves the project
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Create and configure open file dialog
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Project File|*.xml";
-            openFileDialog.Title = "Open Project";
+            //Create and configure save file dialog
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Project File|*.xml";
+            saveFileDialog.Title = "Save Project";
 
-            //Show open file dialog
-            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            //Show save file dialog
+            if(saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 //Update the project filepath
-                ProjectFilepath = openFileDialog.FileName;
+                ProjectFilepath = saveFileDialog.FileName;
             }
 
             //If the project filepath is valid
-            if(!string.IsNullOrEmpty(ProjectFilepath) && File.Exists(ProjectFilepath))
+            if(!string.IsNullOrEmpty(ProjectFilepath))
             {
-                //Open the project
-                project = ProjectIO.Load(ProjectFilepath);
-
-                //Load project into task list control
-                taskListControl.LoadProject(project);
-                taskListControl.SelectFirstTask();
+                //Save the project
+                if(!project.Save(ProjectFilepath))
+                {
+                    //Display error message
+                    MessageBox.Show("Failed to save project");
+                }
             }
         }
     }
