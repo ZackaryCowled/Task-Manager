@@ -80,7 +80,6 @@
             this.Controls.Add(this.TaskList);
             this.Name = "TaskListControl";
             this.Size = new System.Drawing.Size(300, 700);
-            this.Load += new System.EventHandler(this.TaskListControl_Load);
             this.ResumeLayout(false);
 
         }

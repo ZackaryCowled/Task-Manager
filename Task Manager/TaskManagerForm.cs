@@ -37,7 +37,7 @@ namespace Task_Manager
         //Creates and configures the task list control
         private void InitializeTaskListControl()
         {
-            taskListControl = new TaskListControl();
+            taskListControl = new TaskListControl(project);
             taskListControl.Location = new Point(0, MenuStrip.ClientRectangle.Bottom);
             taskListControl.Size = new Size(taskListControl.Size.Width, ClientSize.Height - MenuStrip.Size.Height);
             taskListControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom;
@@ -47,30 +47,12 @@ namespace Task_Manager
         //Creates and configures the task control
         protected virtual void InitializeTaskControl()
         {
-            taskControl = new TaskControl();
+            taskControl = new TaskControl(project, taskListControl);
             taskControl.Location = new Point(taskListControl.ClientRectangle.Right, MenuStrip.ClientRectangle.Bottom);
             taskControl.Size = new Size(taskControl.Size.Width, ClientSize.Height - MenuStrip.Size.Height);
             taskControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
             taskControl.Visible = false;
             taskControl.Parent = this;
-        }
-
-        //Closes the application
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        //Creates a task
-        private void createToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            taskListControl.CreateTask();
-        }
-
-        //Removes the selected task
-        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            taskListControl.RemoveSelectedTask();
         }
 
         //Opens a project of the users choosing
@@ -93,10 +75,6 @@ namespace Task_Manager
             {
                 //Open the project
                 project.Load(ProjectFilepath);
-
-                //Load project into task list control
-                taskListControl.LoadProject(project);
-                taskListControl.SelectFirstTask();
             }
         }
 
@@ -156,6 +134,24 @@ namespace Task_Manager
                     MessageBox.Show("Failed to save project");
                 }
             }
+        }
+
+        //Closes the application
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        //Creates a task
+        private void createToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        //Removes the selected task
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

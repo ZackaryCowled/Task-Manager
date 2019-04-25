@@ -18,7 +18,7 @@ namespace Task_Manager
         public delegate void TaskAddedEvent(Task task);
         public event TaskAddedEvent OnTaskAdded;
 
-        public delegate void TaskRemovedEvent();
+        public delegate void TaskRemovedEvent(int index);
         public event TaskRemovedEvent OnTaskRemoved;
 
         public delegate void ProjectSavedEvent(Project project);
@@ -59,7 +59,7 @@ namespace Task_Manager
                 if(OnTaskRemoved != null)
                 {
                     //Invoke the on task removed event
-                    OnTaskRemoved.Invoke();
+                    OnTaskRemoved.Invoke(index);
                 }
 
                 //Successfully removed task
@@ -73,22 +73,11 @@ namespace Task_Manager
         //Removes the specified task from the task list
         public bool RemoveTask(Task task)
         {
-            //Remove the specified task from the task list
-            bool result = Tasks.Remove(task);
+            //Find the index of the specified task
+            int index = Tasks.IndexOf(task);
 
-            //If the task was removed
-            if(result)
-            {
-                //If at least one subscription to the on task removed event exists
-                if (OnTaskRemoved != null)
-                {
-                    //Invoke the on task removed event
-                    OnTaskRemoved.Invoke();
-                }
-            }
-
-            //Return whether the task was successfully removed
-            return result;
+            //Remove the task
+            return RemoveTask(index);
         }
 
         //Saves the project to the specified filepath

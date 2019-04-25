@@ -23,6 +23,7 @@ namespace Task_Manager
         [XmlArrayItem("TaskItemsListItem")]
         public List<TaskItem> Items;
 
+        //Create and initialize a task
         public Task()
         {
             Name = "Untitled";

@@ -12,96 +12,22 @@ namespace Task_Manager
 {
     public partial class TaskListControl : UserControl
     {
-        List<Task> tasks;
+        public delegate void TaskSelectedEvent(Task task);
+        public event TaskSelectedEvent OnTaskSelected;
 
-        public TaskListControl()
+        private Project project;
+
+        //Initializes and sets up the task list control
+        public TaskListControl(Project project)
         {
+            //Initialize task list control
             InitializeComponent();
-        }
 
-        //Initializes the task list control
-        private void TaskListControl_Load(object sender, EventArgs e)
-        {
-            tasks = ((TaskManagerForm)Parent).project.Tasks;
-        }
-
-        //Creates a task
-        public void CreateTask()
-        {
-            //If no tasks exist
-            if(TaskList.Items.Count == 0)
-            {
-                //Show the task control
-                ShowTaskControl();
-            }
-
-            //Create and configure task
-            Task task = new Task();
-            tasks.Add(task);
-
-            //Add task name to task list
-            TaskList.Items.Add(task.Name);
-
-            //Select task
-            TaskList.SelectedIndex = TaskList.Items.Count - 1;
-        }
-
-        //Creates a task
-        private void CreateTaskButton_Click(object sender, EventArgs e)
-        {
-            CreateTask();
-        }
-
-        //Removes the selected task
-        public void RemoveSelectedTask()
-        {
-            //If at least one task exists
-            if (TaskList.Items.Count > 0)
-            {
-                //Cache selected index
-                int selectedIndex = TaskList.SelectedIndex;
-
-                //Remove selected task
-                tasks.RemoveAt(TaskList.SelectedIndex);
-                TaskList.Items.RemoveAt(TaskList.SelectedIndex);
-
-                //If at least one task still remains
-                if (TaskList.Items.Count > 0)
-                {
-                    //If an item above the removed task can be selected
-                    if (selectedIndex > 0)
-                    {
-                        //Select the above task
-                        TaskList.SelectedIndex = selectedIndex - 1;
-                    }
-                    else
-                    {
-                        //Select the first task
-                        TaskList.SelectedIndex = selectedIndex;
-                    }
-                }
-                else
-                {
-                    //Hide the task control
-                    HideTaskControl();
-                }
-            }
-        }
-
-        //Removes the selected task
-        private void RemoveTaskButton_Click(object sender, EventArgs e)
-        {
-            RemoveSelectedTask();
-        }
-
-        private void TaskList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //If at least one task exists
-            if (TaskList.SelectedIndex >= 0)
-            {
-                //Select the task to display with the task control
-                ((TaskManagerForm)Parent).taskControl.SelectTask(tasks[TaskList.SelectedIndex]);
-            }
+            //Link with the specified project
+            this.project = project;
+            this.project.OnProjectLoaded += ReloadTasks;
+            this.project.OnTaskAdded += AddTask;
+            this.project.OnTaskRemoved += RemoveTask;
         }
 
         //Shows the task control
@@ -126,52 +52,126 @@ namespace Task_Manager
             }
         }
 
-        //Sets the name of the selected task
-        public void SetSelectedTaskName(string name)
+        //Releases currently loaded tasks and loads the specified project
+        private void ReloadTasks(Project project)
         {
-            tasks[TaskList.SelectedIndex].Name = name;
+            //Release currently loaded tasks
+            TaskList.Items.Clear();
+
+            //If there is at least one task in the project
+            if (project.Tasks.Count > 0)
+            {
+                //Show the task control
+                ShowTaskControl();
+
+                //For each task in the project
+                foreach (Task task in project.Tasks)
+                {
+                    //Add task
+                    TaskList.Items.Add(task.Name);
+                }
+            }
+            else
+            {
+                //Hide the task control
+                HideTaskControl();
+            }
+        }
+
+        //Adds the specified task to the task list
+        private void AddTask(Task task)
+        {
+            //If no tasks exist
+            if(TaskList.Items.Count == 0)
+            {
+                //Show the task control
+                ShowTaskControl();
+            }
+
+            //Add the task to the task list
+            TaskList.Items.Add(task.Name);
+
+            //Select the task
+            TaskList.SelectedIndex = TaskList.Items.Count - 1;
+        }
+
+        //Removes the task at the specified index in the task list
+        private void RemoveTask(int index)
+        {
+            //Remove the task from the task list
+            TaskList.Items.RemoveAt(index);
+
+            //Select previous index
+            SelectPreviousIndex(index);
+
+            //If no tasks exist
+            if(TaskList.Items.Count == 0)
+            {
+                //Hide the task control
+                HideTaskControl();
+            }
+        }
+
+        //Selects the previous index or current depending on the number of tasks available
+        //NOTE: Should only be called after removing a task
+        private void SelectPreviousIndex(int index)
+        {
+            //If at least one task exists
+            if (TaskList.Items.Count > 0)
+            {
+                //If the index is not the first task
+                if (index > 0)
+                {
+                    //Select the previous task
+                    TaskList.SelectedIndex = index - 1;
+                }
+                else
+                {
+                    //Select the first task
+                    TaskList.SelectedIndex = 0;
+                }
+            }
+        }
+
+        //Sets the name of the selected task to the specified name
+        public void SetSelectedTasksName(string name)
+        {
+            //Set the name of the selected task to the specified name
+            project.Tasks[TaskList.SelectedIndex].Name = name;
             TaskList.Items[TaskList.SelectedIndex] = name;
         }
 
-        //Sets the selected task to the first task
-        public void SelectFirstTask()
+        //Creates a new task
+        private void CreateTaskButton_Click(object sender, EventArgs e)
+        {
+            //Create a new task
+            project.AddTask();
+        }
+
+        //Removes the selected task
+        private void RemoveTaskButton_Click(object sender, EventArgs e)
         {
             //If at least one task exists
-            if(tasks.Count > 0)
+            if (TaskList.Items.Count > 0)
             {
-                //Select the first task
-                TaskList.SelectedIndex = 0;
-                ShowTaskControl();
+                //Remove the selected task
+                project.RemoveTask(TaskList.SelectedIndex);
             }
         }
 
-        //Loads the project
-        public void LoadProject(Project project)
+        //Called when the task selection index changes
+        private void TaskList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Clear already loaded tasks
-            tasks.Clear();
-            TaskList.Items.Clear();
-
-            //If no tasks exist in the project
-            if(project.Tasks.Count == 0)
+            //If at least one subscription to the on task selected event exists
+            if(OnTaskSelected != null)
             {
-                //Exit out of the function
-                return;
+                //If the selected index is valid
+                if (TaskList.SelectedIndex >= 0 && TaskList.SelectedIndex < project.Tasks.Count)
+                {
+                    //Invoke the on task selected event
+                    OnTaskSelected(project.Tasks[TaskList.SelectedIndex]);
+                }
             }
-
-            //Load tasks
-            tasks = project.Tasks;
-
-            //For each task
-            for (int i = 0; i < tasks.Count; i++)
-            {
-                //Add task name to task list
-                TaskList.Items.Add(tasks[i].Name);
-            }
-
-            //Select the first task
-            SelectFirstTask();
         }
     }
 }
-

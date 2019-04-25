@@ -12,23 +12,36 @@ namespace Task_Manager
 {
     public partial class TaskControl : UserControl
     {
-        TaskItemPanelControl taskItemPanel;
-        Task selectedTask;
+        private Project project;
+        private Task selectedTask;
+        private TaskListControl taskListControl;
+        private TaskItemPanelControl taskItemPanel;
 
-        public TaskControl()
+        //Initializes and sets up the task control
+        public TaskControl(Project project, TaskListControl taskListControl)
         {
+            //Initialize the task control
             InitializeComponent();
+
+            //Link with the specified project
+            this.project = project;
+            
+            //Link with the specified task list control
+            this.taskListControl = taskListControl;
+            this.taskListControl.OnTaskSelected += ReloadTask;
         }
 
+        //Creates and configures custom controls
         private void TaskControl_Load(object sender, EventArgs e)
         {
             //Create and configure custom controls
             InitializeTaskItemPanelControl();
         }
 
+        //Initializes the task item panel control
         private void InitializeTaskItemPanelControl()
         {
-            //Initialize the task item panel
+            //Initialize the task item panel control
             taskItemPanel = new TaskItemPanelControl();
             taskItemPanel.Location = new Point(0, DescriptionTextbox.Location.Y + DescriptionTextbox.Size.Height);
             taskItemPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
@@ -36,68 +49,42 @@ namespace Task_Manager
             taskItemPanel.Parent = this;
         }
 
-        //Adds the task item to the task item panel
-        public void AddTaskItem(TaskItemControl taskItem)
+        //Releases currently loaded task items and loads the specified task
+        private void ReloadTask(Task task)
         {
-            taskItemPanel.AddTaskItem(taskItem);
-        }
-
-        //Selected the specified task
-        public void SelectTask(Task task)
-        {
-            //Select the specified task
+            //Link with the specified task
             selectedTask = task;
-            UpdateTaskInformation();
-        }
 
-        //Synchronizes the task information with the selected task
-        void UpdateTaskInformation()
-        {
-            //Update basic information
+            //Release currently loaded task items
+            taskItemPanel.RemoveAllTaskItems();
+
+            //Load basic task information
             NameTextbox.Text = selectedTask.Name;
             CompleteCheckbox.Checked = selectedTask.IsComplete;
             DescriptionTextbox.Text = selectedTask.Description;
 
-            //If task item panel exists
-            if (taskItemPanel != null)
-            {
-                //Remove task item controls from previously selected task
-                taskItemPanel.RemoveAllTaskItems();
-            }
-            else
-            {
-                //Initialize the task item panel
-                InitializeTaskItemPanelControl();
-            }
-
-            //For each task item in the selected task
-            for(int i = 0; i < selectedTask.Items.Count; i++)
-            {
-                //Create and configure task item
-                AddTaskItem(new TaskItemControl());
-            }
+            //TODO: Load task items
         }
 
+        //Called when the name textbox text changes
         private void NameTextbox_TextChanged(object sender, EventArgs e)
         {
             //Update the selected tasks name
-            ((TaskManagerForm)Parent).taskListControl.SetSelectedTaskName(NameTextbox.Text);
-
-            //Refocus on textbox
-            NameTextbox.Focus();
-            NameTextbox.SelectionStart = NameTextbox.Text.Length;
+            taskListControl.SetSelectedTasksName(NameTextbox.Text);
         }
 
-        private void DescriptionTextbox_TextChanged(object sender, EventArgs e)
-        {
-            //Update the selected tasks description
-            selectedTask.Description = DescriptionTextbox.Text;
-        }
-
+        //Called when the complete checkbox checked state changes
         private void CompleteCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             //Update the selected tasks is complete flag
             selectedTask.IsComplete = CompleteCheckbox.Checked;
+        }
+
+        //Called when the description textbox text changes
+        private void DescriptionTextbox_TextChanged(object sender, EventArgs e)
+        {
+            //Update the selected tasks description
+            selectedTask.Description = DescriptionTextbox.Text;
         }
     }
 }
