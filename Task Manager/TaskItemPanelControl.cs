@@ -70,6 +70,18 @@ namespace Task_Manager
                 Controls.Remove(taskItem);
             }
         }
+
+        //Removes all the task items
+        public void RemoveAllTaskItems()
+        {
+            //If task items exist
+            if (taskItems != null)
+            {
+                //Remove all task items
+                taskItems.Clear();
+                Controls.Clear();
+            }
+        }
     }
 }
 

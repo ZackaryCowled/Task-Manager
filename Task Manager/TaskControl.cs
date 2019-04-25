@@ -58,7 +58,12 @@ namespace Task_Manager
             CompleteCheckbox.Checked = selectedTask.IsComplete;
             DescriptionTextbox.Text = selectedTask.Description;
 
-            //TODO: Remove custom task item controls and setup for selected task...
+            //If task item panel exists
+            if (taskItemPanel != null)
+            {
+                //Remove task item controls from previously selected task
+                taskItemPanel.RemoveAllTaskItems();
+            }
         }
 
         private void NameTextbox_TextChanged(object sender, EventArgs e)

@@ -22,7 +22,7 @@ namespace Task_Manager
         //Initializes the task list control
         private void TaskListControl_Load(object sender, EventArgs e)
         {
-            tasks = new List<Task>();
+            tasks = ((TaskManagerForm)Parent).project.Tasks;
         }
 
         //Creates a task
@@ -131,6 +131,36 @@ namespace Task_Manager
         {
             tasks[TaskList.SelectedIndex].Name = name;
             TaskList.Items[TaskList.SelectedIndex] = name;
+        }
+
+        //Sets the selected task to the first task
+        public void SelectFirstTask()
+        {
+            //If at least one task exists
+            if(tasks.Count > 0)
+            {
+                //Select the first task
+                TaskList.SelectedIndex = 0;
+                ShowTaskControl();
+            }
+        }
+
+        //Loads the project
+        public void LoadProject(Project project)
+        {
+            //Clear already loaded tasks
+            tasks.Clear();
+            TaskList.Items.Clear();
+
+            //Load tasks
+            tasks = project.Tasks;
+
+            //For each task
+            for (int i = 0; i < tasks.Count; i++)
+            {
+                //Add task name to task list
+                TaskList.Items.Add(tasks[i].Name);
+            }
         }
     }
 }
