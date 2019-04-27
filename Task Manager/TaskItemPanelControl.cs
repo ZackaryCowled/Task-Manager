@@ -49,26 +49,33 @@ namespace Task_Manager
             taskItems.Add(taskItem);
         }
 
-        //Removes the task item
-        public void RemoveTaskItem(TaskItemControl taskItem)
+        //Removes the task item at the specified index
+        public void RemoveTaskItem(int index)
         {
-            //Find the index of the task item
-            int index = taskItems.IndexOf(taskItem);
-
-            //If the task item is in the panel
-            if (index > -1)
+            //If the index is inside the bounds of the task items list
+            if(index >= 0 && index < taskItems.Count)
             {
-                //For each task item after the specified task item
+                //For each task item after the specified index going from the end to the index
                 for (int i = taskItems.Count - 1; i > index; i--)
                 {
                     //Move task item up
                     taskItems[i].Location = taskItems[i - 1].Location;
                 }
 
-                //Remove the specified task item
-                taskItems.Remove(taskItem);
-                Controls.Remove(taskItem);
+                //Removes the specified task item
+                taskItems.RemoveAt(index);
+                Controls.RemoveAt(index);
             }
+        }
+
+        //Removes the task item
+        public void RemoveTaskItem(TaskItemControl taskItem)
+        {
+            //Find the index of the task item
+            int index = taskItems.IndexOf(taskItem);
+
+            //Remove the task item
+            RemoveTaskItem(index);
         }
 
         //Removes all the task items

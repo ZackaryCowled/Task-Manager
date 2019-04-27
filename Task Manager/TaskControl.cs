@@ -52,18 +52,47 @@ namespace Task_Manager
         //Releases currently loaded task items and loads the specified task
         private void ReloadTask(Task task)
         {
+            //If the selected task is valid
+            if(selectedTask != null)
+            {
+                //Unsubscribe from the selected tasks events
+                selectedTask.OnTaskItemAdded -= OnTaskItemAdded;
+                selectedTask.OnTaskItemRemoved -= OnTaskItemRemoved;
+            }
+
             //Link with the specified task
             selectedTask = task;
-
-            //Release currently loaded task items
-            taskItemPanel.RemoveAllTaskItems();
+            selectedTask.OnTaskItemAdded += OnTaskItemAdded;
+            selectedTask.OnTaskItemRemoved += OnTaskItemRemoved;
 
             //Load basic task information
             NameTextbox.Text = selectedTask.Name;
             CompleteCheckbox.Checked = selectedTask.IsComplete;
             DescriptionTextbox.Text = selectedTask.Description;
 
-            //TODO: Load task items
+            //Release currently loaded task items
+            taskItemPanel.RemoveAllTaskItems();
+
+            //For each task item in the selected task
+            foreach(TaskItem taskItem in selectedTask.Items)
+            {
+                //Add task item control to the task item panel
+                taskItemPanel.AddTaskItem(new TaskItemControl(selectedTask, taskItem));
+            }
+        }
+
+        //Called when a task item is added to the selected task
+        private void OnTaskItemAdded(TaskItem taskItem)
+        {
+            //Add the task item control to the task item panel
+            taskItemPanel.AddTaskItem(new TaskItemControl(selectedTask, taskItem));
+        }
+
+        //Called when a task item is removed from the selected task
+        private void OnTaskItemRemoved(int index)
+        {
+            //Remove the task item control at the specified index in the task item panel
+            taskItemPanel.RemoveTaskItem(index);
         }
 
         //Called when the name textbox text changes
@@ -85,6 +114,13 @@ namespace Task_Manager
         {
             //Update the selected tasks description
             selectedTask.Description = DescriptionTextbox.Text;
+        }
+
+        //Called when the add task item button is clicked
+        private void AddTaskItemButton_Click(object sender, EventArgs e)
+        {
+            //Add a task item to the selected task
+            selectedTask.AddTaskItem<TaskItem>();
         }
     }
 }

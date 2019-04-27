@@ -99,6 +99,7 @@
             this.AddTaskItemButton.TabIndex = 7;
             this.AddTaskItemButton.Text = "Add Task Item";
             this.AddTaskItemButton.UseVisualStyleBackColor = true;
+            this.AddTaskItemButton.Click += new System.EventHandler(this.AddTaskItemButton_Click);
             // 
             // TaskControl
             // 

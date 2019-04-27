@@ -70,6 +70,9 @@ namespace Task_Manager
                     //Add task
                     TaskList.Items.Add(task.Name);
                 }
+
+                //Select the first task
+                TaskList.SelectedIndex = 0;
             }
             else
             {
