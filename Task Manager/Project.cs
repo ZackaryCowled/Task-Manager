@@ -47,9 +47,11 @@ namespace Task_Manager
         }
 
         //Removes the task at the specified index in the task list
+        //Invokes the task removed event
+        //Returns a flag indicating whether the task was removed successfully
         public bool RemoveTask(int index)
         {
-            //If the specified index in inside the bounds of the task list
+            //If the specified index is inside the bounds of the task list
             if (index >= 0 && index < Tasks.Count)
             {
                 //Remove the task at the specified index in the task list
@@ -71,6 +73,8 @@ namespace Task_Manager
         }
 
         //Removes the specified task from the task list
+        //Invokes the task removed event
+        //Returns a flag indicating whether the task was removed successfully
         public bool RemoveTask(Task task)
         {
             //Find the index of the specified task
@@ -82,6 +86,7 @@ namespace Task_Manager
 
         //Saves the project to the specified filepath
         //filepath - Directory, name and file extension (Example: './My Project.xml')
+        //Returns a flag indicating whether the project saved successfully
         public bool Save(string filepath)
         {
             try
@@ -118,6 +123,7 @@ namespace Task_Manager
 
         //Loads the project from the specified filepath
         //filepath - Directory, name and file extension (Example './My Project.xml')
+        //Returns a flag indicating whether the project loaded successfully
         public bool Load(string filepath)
         {
             //If the filepath is valid
