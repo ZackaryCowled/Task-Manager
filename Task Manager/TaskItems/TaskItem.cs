@@ -46,7 +46,7 @@ namespace Task_Manager
         }
 
         //Creates and adds a drop down list with the specified label and drop down items to the parent
-        protected void CreateDropDownList(TaskItemControl parent, string labelText, Point location, int selectedIndex, params string[] dropDownItems)
+        protected void CreateDropDownList(TaskItemControl parent, string labelText, Point location, int selectedIndex, EventHandler callback, params string[] dropDownItems)
         {
             //Create and configure drop down list label
             Label dropDownLabel = new Label();
@@ -72,6 +72,9 @@ namespace Task_Manager
 
                 //Select the first drop down item
                 dropDownList.SelectedIndex = selectedIndex;
+
+                //Subscribe to selected index change event
+                dropDownList.SelectedIndexChanged += callback;
             }
 
             //Add drop down label and list to the parent
@@ -80,7 +83,7 @@ namespace Task_Manager
         }
 
         //Creates and adds a horizontal slider with the specified properties to the parent
-        protected void CreateHorizontalSlider(TaskItemControl parent, Point location, Size size, int value, AnchorStyles anchor)
+        protected void CreateHorizontalSlider(TaskItemControl parent, Point location, Size size, int value, EventHandler callback, AnchorStyles anchor)
         {
             //Create and configure horizontal slider
             TrackBar horizontalSlider = new TrackBar();
@@ -90,6 +93,9 @@ namespace Task_Manager
             horizontalSlider.Minimum = 0;
             horizontalSlider.Maximum = 100;
             horizontalSlider.Value = value;
+
+            //Subscribe to value changed event
+            horizontalSlider.ValueChanged += callback;
 
             //Add label and horizontal slider to the parent
             parent.Controls.Add(horizontalSlider);

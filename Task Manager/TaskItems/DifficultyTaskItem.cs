@@ -21,7 +21,14 @@ namespace Task_Manager.TaskItems
             CreateTaskLabel(taskItemControl, "Difficulty");
 
             //Add horizontal slider
-            CreateHorizontalSlider(taskItemControl, new Point(-3, 40), new Size(320, 50), difficultyValue, AnchorStyles.Left | AnchorStyles.Right);
+            CreateHorizontalSlider(taskItemControl, new Point(-3, 40), new Size(320, 50), difficultyValue, OnDifficultyValueChanged, AnchorStyles.Left | AnchorStyles.Right);
+        }
+
+        //Called on difficulty value change
+        private void OnDifficultyValueChanged(object sender, EventArgs e)
+        {
+            //Update difficulty value
+            difficultyValue = ((TrackBar)sender).Value;
         }
     }
 }
