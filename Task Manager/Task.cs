@@ -58,6 +58,25 @@ namespace Task_Manager
             return (TaskItemType)Items.Last();
         }
 
+        //Adds a new task item to the task
+        //Invokes the task item added event
+        //Returns the newly created task item
+        public TaskItem AddTaskItem(Type taskItemType)
+        {
+            //Add task item to the items list
+            Items.Add((TaskItem)Activator.CreateInstance(taskItemType));
+
+            //If at least one subscription to the on task item added event exists
+            if(OnTaskItemAdded != null)
+            {
+                //Invoke the on task item added event
+                OnTaskItemAdded.Invoke(Items.Last());
+            }
+
+            //Return the task item
+            return (TaskItem)Items.Last();
+        }
+
         //Removes the task item at the specified index in the task
         //Invokes the task item removed event
         //Returns a flag indicating whether the task item was removed successfully

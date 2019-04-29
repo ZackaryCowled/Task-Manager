@@ -46,6 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Project.cs" />
+    <Compile Include="SelectTaskItemDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectTaskItemDialog.Designer.cs">
+      <DependentUpon>SelectTaskItemDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Task.cs" />
     <Compile Include="TaskControl.cs">
       <SubType>UserControl</SubType>
@@ -82,6 +88,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="SelectTaskItemDialog.resx">
+      <DependentUpon>SelectTaskItemDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TaskControl.resx">
       <DependentUpon>TaskControl.cs</DependentUpon>
     </EmbeddedResource>

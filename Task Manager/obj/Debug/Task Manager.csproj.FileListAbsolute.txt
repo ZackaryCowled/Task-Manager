@@ -24,3 +24,4 @@ C:\Users\Zack\Documents\Task-Manager\Task Manager\obj\Debug\Task_Manager.TaskLis
 C:\Users\Zack\Documents\Task-Manager\Task Manager\obj\Debug\Task_Manager.TaskManagerForm.resources
 C:\Users\Zack\Documents\Task-Manager\Task Manager\obj\Debug\Task_Manager.Properties.Resources.resources
 C:\Users\Zack\Documents\Task-Manager\Task Manager\obj\Debug\Task Manager.csproj.GenerateResource.Cache
+C:\Users\Zack\Documents\Task-Manager\Task Manager\obj\Debug\Task_Manager.SelectTaskItemDialog.resources

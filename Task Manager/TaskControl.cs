@@ -119,9 +119,15 @@ namespace Task_Manager
         //Called when the add task item button is clicked
         private void AddTaskItemButton_Click(object sender, EventArgs e)
         {
-            //TODO: Select from all custom task items
-            //Add a task item to the selected task
-            selectedTask.AddTaskItem<DifficultyTaskItem>();
+            //Create select task item dialog
+            SelectTaskItemDialog selectTaskItemDialog = new SelectTaskItemDialog();
+
+            //If the user selected a task item type
+            if(selectTaskItemDialog.ShowDialog() == DialogResult.OK)
+            {
+                //Add task item to the selected task
+                selectedTask.AddTaskItem(selectTaskItemDialog.SelectedTaskItemType);
+            }
         }
     }
 }
