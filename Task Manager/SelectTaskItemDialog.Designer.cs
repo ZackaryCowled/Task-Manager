@@ -30,7 +30,7 @@
         {
             this.TaskItemTypeList = new System.Windows.Forms.ListBox();
             this.SelectButton = new System.Windows.Forms.Button();
-            this.CancelButton = new System.Windows.Forms.Button();
+            this.TerminateButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TaskItemTypeList
@@ -52,24 +52,23 @@
             this.SelectButton.Text = "Select";
             this.SelectButton.UseVisualStyleBackColor = true;
             // 
-            // CancelButton
+            // TerminateButton
             // 
-            this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelButton.Location = new System.Drawing.Point(12, 143);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(375, 40);
-            this.CancelButton.TabIndex = 2;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = true;
+            this.TerminateButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.TerminateButton.Location = new System.Drawing.Point(12, 143);
+            this.TerminateButton.Name = "TerminateButton";
+            this.TerminateButton.Size = new System.Drawing.Size(375, 40);
+            this.TerminateButton.TabIndex = 2;
+            this.TerminateButton.Text = "Cancel";
+            this.TerminateButton.UseVisualStyleBackColor = true;
             // 
             // SelectTaskItemDialog
             // 
             this.AcceptButton = this.SelectButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.CancelButton;
             this.ClientSize = new System.Drawing.Size(776, 186);
-            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.TerminateButton);
             this.Controls.Add(this.SelectButton);
             this.Controls.Add(this.TaskItemTypeList);
             this.Name = "SelectTaskItemDialog";
@@ -83,6 +82,6 @@
 
         private System.Windows.Forms.ListBox TaskItemTypeList;
         private System.Windows.Forms.Button SelectButton;
-        private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.Button TerminateButton;
     }
 }

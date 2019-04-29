@@ -17,9 +17,10 @@ namespace Task_Manager
         private Task selectedTask;
         private TaskListControl taskListControl;
         private TaskItemPanelControl taskItemPanel;
+        private bool insideThemedWindow;
 
         //Initializes and sets up the task control
-        public TaskControl(Project project, TaskListControl taskListControl)
+        public TaskControl(Project project, TaskListControl taskListControl, bool insideThemedWindow)
         {
             //Initialize the task control
             InitializeComponent();
@@ -30,6 +31,9 @@ namespace Task_Manager
             //Link with the specified task list control
             this.taskListControl = taskListControl;
             this.taskListControl.OnTaskSelected += ReloadTask;
+
+            //Initialize flags
+            this.insideThemedWindow = insideThemedWindow;
         }
 
         //Creates and configures custom controls
@@ -46,6 +50,16 @@ namespace Task_Manager
             taskItemPanel = new TaskItemPanelControl(this);
             taskItemPanel.Location = new Point(0, DescriptionTextbox.Location.Y + DescriptionTextbox.Size.Height);
             taskItemPanel.AutoScroll = true;
+
+            //If the task manager window is themed
+            if(insideThemedWindow)
+            {
+                //Reduce height of the task item panel
+                taskItemPanel.Size = new Size(Width, 185);
+                taskItemPanel.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            }
+
+            //Add task item panel to the task control
             taskItemPanel.Parent = this;
         }
 

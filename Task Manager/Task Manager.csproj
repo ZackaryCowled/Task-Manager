@@ -45,6 +45,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChristmasTaskManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChristmasTaskManagerForm.Designer.cs">
+      <DependentUpon>ChristmasTaskManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HalloweenTaskManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HalloweenTaskManagerForm.Designer.cs">
+      <DependentUpon>HalloweenTaskManagerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Project.cs" />
     <Compile Include="SelectTaskItemDialog.cs">
       <SubType>Form</SubType>
@@ -52,6 +64,7 @@
     <Compile Include="SelectTaskItemDialog.Designer.cs">
       <DependentUpon>SelectTaskItemDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="SpecialEventHandler.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="TaskControl.cs">
       <SubType>UserControl</SubType>
@@ -88,6 +101,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThemedTaskManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThemedTaskManagerForm.Designer.cs">
+      <DependentUpon>ThemedTaskManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ValentinesTaskManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ValentinesTaskManagerForm.Designer.cs">
+      <DependentUpon>ValentinesTaskManagerForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="SelectTaskItemDialog.resx">
       <DependentUpon>SelectTaskItemDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,6 +141,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ThemedTaskManagerForm.resx">
+      <DependentUpon>ThemedTaskManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

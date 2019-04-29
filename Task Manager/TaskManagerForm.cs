@@ -47,8 +47,8 @@ namespace Task_Manager
         //Creates and configures the task control
         protected virtual void InitializeTaskControl()
         {
-            taskControl = new TaskControl(project, taskListControl);
-            taskControl.Location = new Point(taskListControl.ClientRectangle.Right, MenuStrip.ClientRectangle.Bottom);
+            taskControl = new TaskControl(project, taskListControl, false);
+            taskControl.Location = new Point(taskListControl.ClientRectangle.Right, MenuStrip.Size.Height);
             taskControl.Size = new Size(taskControl.Size.Width, ClientSize.Height - MenuStrip.Size.Height);
             taskControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
             taskControl.Visible = false;

@@ -25,7 +25,7 @@ namespace Task_Manager
 
             //Setup dialog results
             SelectButton.DialogResult = DialogResult.OK;
-            CancelButton.DialogResult = DialogResult.Cancel;
+            TerminateButton.DialogResult = DialogResult.Cancel;
 
             //Initialize and setup task item types lists
             InitializeTaskItemTypesList();

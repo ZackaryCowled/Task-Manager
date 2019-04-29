@@ -16,7 +16,9 @@ namespace Task_Manager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TaskManagerForm());
+            SpecialEventHandler specialEventHandler = new SpecialEventHandler();
+            Type taskManagerFormType = specialEventHandler.GetEventValue(DateTime.Now);
+            Application.Run((TaskManagerForm)Activator.CreateInstance(taskManagerFormType));
         }
     }
 }

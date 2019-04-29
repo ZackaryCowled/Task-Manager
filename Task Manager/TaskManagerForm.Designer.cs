@@ -135,7 +135,7 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip MenuStrip;
+        protected System.Windows.Forms.MenuStrip MenuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openProjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveProjectToolStripMenuItem;
