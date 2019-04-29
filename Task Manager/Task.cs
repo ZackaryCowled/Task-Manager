@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Task_Manager.TaskItems;
 
 namespace Task_Manager
 {
@@ -29,7 +30,7 @@ namespace Task_Manager
         public delegate void TaskItemRemovedEvent(int index);
         public event TaskItemRemovedEvent OnTaskItemRemoved;
 
-        //Create and initialize a task
+        //Initializes a task
         public Task()
         {
             Name = "Untitled";

@@ -53,7 +53,9 @@
     <Compile Include="TaskControl.Designer.cs">
       <DependentUpon>TaskControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="TaskItem.cs" />
+    <Compile Include="TaskItems\DeadlineTaskItem.cs" />
+    <Compile Include="TaskItems\DifficultyTaskItem.cs" />
+    <Compile Include="TaskItems\TaskItem.cs" />
     <Compile Include="TaskItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

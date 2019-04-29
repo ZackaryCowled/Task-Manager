@@ -12,13 +12,42 @@ namespace Task_Manager
 {
     public partial class TaskItemPanelControl : UserControl
     {
+        TaskControl taskControl;
         List<TaskItemControl> taskItems;
 
-        public TaskItemPanelControl()
+        //Creates and initializes a task item panel control
+        public TaskItemPanelControl(TaskControl taskControl)
         {
+            //Initializes task item panel control components
             InitializeComponent();
+
+            //Link with the task control
+            Link(taskControl);
         }
 
+        //Links the task control and subscribes to events
+        private void Link(TaskControl taskControl)
+        {
+            //Link and subscribe to events
+            this.taskControl = taskControl;
+            this.taskControl.Resize += OnResize;
+        }
+
+        //Resizes the task item panel and children
+        private void OnResize(object sender, EventArgs e)
+        {
+            //Resize task item panel control
+            Size = new Size(taskControl.Width, Size.Height);
+
+            //For each task item
+            foreach(TaskItemControl taskItem in taskItems)
+            {
+                //Resize to fit the task item panel control
+                taskItem.Size = new Size(Width - SystemInformation.VerticalScrollBarWidth, taskItem.Size.Height);
+            }
+        }
+
+        //Called on load
         private void TaskItemPanelControl_Load(object sender, EventArgs e)
         {
             //Initialize task items list

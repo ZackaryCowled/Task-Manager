@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Task_Manager.TaskItems;
 
 namespace Task_Manager
 {
@@ -42,9 +43,8 @@ namespace Task_Manager
         private void InitializeTaskItemPanelControl()
         {
             //Initialize the task item panel control
-            taskItemPanel = new TaskItemPanelControl();
+            taskItemPanel = new TaskItemPanelControl(this);
             taskItemPanel.Location = new Point(0, DescriptionTextbox.Location.Y + DescriptionTextbox.Size.Height);
-            taskItemPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             taskItemPanel.AutoScroll = true;
             taskItemPanel.Parent = this;
         }
@@ -119,8 +119,9 @@ namespace Task_Manager
         //Called when the add task item button is clicked
         private void AddTaskItemButton_Click(object sender, EventArgs e)
         {
+            //TODO: Select from all custom task items
             //Add a task item to the selected task
-            selectedTask.AddTaskItem<TaskItem>();
+            selectedTask.AddTaskItem<DifficultyTaskItem>();
         }
     }
 }
