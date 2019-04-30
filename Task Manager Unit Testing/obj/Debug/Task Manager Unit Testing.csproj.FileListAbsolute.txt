@@ -1,0 +1,7 @@
+C:\Users\Zack\Documents\Task-Manager\Task Manager Unit Testing\bin\Debug\Task Manager Unit Testing.dll
+C:\Users\Zack\Documents\Task-Manager\Task Manager Unit Testing\bin\Debug\Task Manager Unit Testing.pdb
+C:\Users\Zack\Documents\Task-Manager\Task Manager Unit Testing\bin\Debug\Task Manager.exe
+C:\Users\Zack\Documents\Task-Manager\Task Manager Unit Testing\bin\Debug\Task Manager.pdb
+C:\Users\Zack\Documents\Task-Manager\Task Manager Unit Testing\obj\Debug\Task Manager Unit Testing.csprojResolveAssemblyReference.cache
+C:\Users\Zack\Documents\Task-Manager\Task Manager Unit Testing\obj\Debug\Task Manager Unit Testing.dll
+C:\Users\Zack\Documents\Task-Manager\Task Manager Unit Testing\obj\Debug\Task Manager Unit Testing.pdb
