@@ -51,8 +51,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DeadlineTaskItemTests.cs" />
+    <Compile Include="DifficultyTaskItemTests.cs" />
+    <Compile Include="ProjectTests.cs" />
     <Compile Include="SpecialEventHandlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Task Manager\Task Manager.csproj">

@@ -8,7 +8,8 @@ namespace Task_Manager_Unit_Testing
     public class SpecialEventHandlerTests
     {
         [TestMethod]
-        public void GetTaskManagerForm()
+        [TestCategory("Special Event Handler Tests")]
+        public void GetTaskManagerFormTest()
         {
             //Arrange
             DateTime nonEventDate = new DateTime(DateTime.Now.Year, 1, 2);
@@ -23,7 +24,8 @@ namespace Task_Manager_Unit_Testing
         }
 
         [TestMethod]
-        public void GetValentinesTaskManagerForm()
+        [TestCategory("Special Event Handler Tests")]
+        public void GetValentinesTaskManagerFormTest()
         {
             //Arrange
             DateTime valentinesDate = new DateTime(DateTime.Now.Year, 2, 14);
@@ -39,7 +41,8 @@ namespace Task_Manager_Unit_Testing
         }
 
         [TestMethod]
-        public void GetHalloweenTaskManagerForm()
+        [TestCategory("Special Event Handler Tests")]
+        public void GetHalloweenTaskManagerFormTest()
         {
             //Arrange
             DateTime halloweenDate = new DateTime(DateTime.Now.Year, 10, 31);
@@ -55,7 +58,8 @@ namespace Task_Manager_Unit_Testing
         }
 
         [TestMethod]
-        public void GetChristmasTaskManagerForm()
+        [TestCategory("Special Event Handler Tests")]
+        public void GetChristmasTaskManagerFormTest()
         {
             //Arrange
             DateTime christmasDate = new DateTime(DateTime.Now.Year, 12, 25);

@@ -42,25 +42,6 @@ namespace Task_Manager
         //Adds a new task item to the task
         //Invokes the task item added event
         //Returns the newly created task item
-        public TaskItemType AddTaskItem<TaskItemType>() where TaskItemType : TaskItem, new()
-        {
-            //Add task item to the items list
-            Items.Add(new TaskItemType());
-
-            //If at least one subscription to the on task item added event exists
-            if(OnTaskItemAdded != null)
-            {
-                //Invoke the on task item added event
-                OnTaskItemAdded.Invoke(Items.Last());
-            }
-
-            //Return the task item
-            return (TaskItemType)Items.Last();
-        }
-
-        //Adds a new task item to the task
-        //Invokes the task item added event
-        //Returns the newly created task item
         public TaskItem AddTaskItem(Type taskItemType)
         {
             //Add task item to the items list
